@@ -19,6 +19,6 @@ jobs:
         dirs=(`ls`)
         for dir in $dirs;
         do
-          echo ${dir:2}
+          echo $dir
         done
       working-directory: CloudFunctions
