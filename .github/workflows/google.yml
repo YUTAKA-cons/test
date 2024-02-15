@@ -1,0 +1,44 @@
+# deploy-gcf.yml
+name: Deploy to Google Cloud Functions
+id: deploy-cloud-functions
+uses: google-github-actions/deploy-cloud-functions@v0.1.0
+with:
+  name: my-function
+  runtime: nodejs10
+  project: ${{ secrets.gcp_project }}
+  credentials: ${{ secrets.gcp_credentials }}
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pjts: [aa]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 20
+    
+    - name: Setup Google Cloud Authentication
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ secrets.GoogleCloud_KEY }}
+
+    - name: Deploy to Google Cloud Functions
+      run: |
+        dirs=`find ./ -type d`
+        for dir in $dirs;
+        do
+          echo $dir
+        done
+      working-directory: CloudFunctions
