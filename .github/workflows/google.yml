@@ -16,9 +16,9 @@ jobs:
 
     - name: Deploy to Google Cloud Functions
       run: |
-        dirs=`find ./ -type d`
+        dirs=(`ls`)
         for dir in $dirs;
         do
-          echo $dir
+          echo ${dir:2}
         done
       working-directory: CloudFunctions
