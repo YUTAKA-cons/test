@@ -1,12 +1,5 @@
 # deploy-gcf.yml
 name: Deploy to Google Cloud Functions
-id: deploy-cloud-functions
-uses: google-github-actions/deploy-cloud-functions@v0.1.0
-with:
-  name: my-function
-  runtime: nodejs10
-  project: test
-  credentials: ${{ secrets.gcp_credentials }}
 
 on:
   push:
